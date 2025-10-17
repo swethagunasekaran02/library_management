@@ -1,0 +1,83 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ book.title }}</title>
+</head>
+ <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 40px;
+            max-width: 700px;
+            margin: auto;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            color: #222;
+        }
+
+        p {
+            font-size: 18px;
+            margin: 10px 0;
+        }
+
+        strong {
+            color: #555;
+        }
+
+        .actions {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .actions a {
+            display: inline-block;
+            margin: 0 10px;
+            padding: 10px 18px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .actions a:hover {
+            background-color: #0056b3;
+        }
+
+        .actions a.delete {
+            background-color: #dc3545;
+        }
+
+        .actions a.delete:hover {
+            background-color: #a71d2a;
+        }
+
+        .actions a.back {
+            background-color: #6c757d;
+        }
+
+        .actions a.back:hover {
+            background-color: #5a6268;
+        }
+    </style>
+<body>
+    <!-- books/templates/books/book_detail.html -->
+<h1>{{ book.title }}</h1>
+<p><strong>Author:</strong> {{ book.author.name }}</p>
+<p><strong>ISBN:</strong> {{ book.isbn }}</p>
+<p><strong>Total Copies:</strong> {{ book.total_copies }}</p>
+<p><strong>Available:</strong> {{ book.available_copies }}</p>
+
+<div class="actions">
+        <a href="{% url 'books:book_edit' book.pk %}">Edit</a>
+        <a href="{% url 'books:book_delete' book.pk %}" class="delete">Delete</a>
+        <a href="{% url 'books:book_list' %}" class="back">Back to list</a>
+    </div>
+
+</body>
+</html>

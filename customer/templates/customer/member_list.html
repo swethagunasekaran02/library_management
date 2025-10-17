@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+
+ <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        h2 {
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 5px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        li {
+            margin: 10px 0;
+            padding: 10px;
+            background-color: #ffffff;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        a {
+            text-decoration: none;
+            color: #2980b9;
+            font-weight: bold;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .no-members {
+            font-style: italic;
+            color: #888;
+        }
+    </style>
+<body>
+    
+{% block content %}
+<h2>All Members</h2>
+<ul>
+    {% for member in members %}
+        <li>
+            <a href="{% url 'customer:member_detail' member.pk %}">
+                {{ member.name }} ({{ member.member_id }})
+            </a>
+        </li>
+    {% empty %}
+        <li>No members found.</li>
+    {% endfor %}
+</ul>
+{% endblock %}
+    
+</body>
+</html>
+
+
+
+
+

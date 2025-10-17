@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="/books/css/style.css">
+
+</head>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+        max-width: 600px;
+        margin: auto;
+    }
+
+    h1 {
+        text-align: center;
+    }
+
+    form {
+        background: #f9f9f9;
+        padding: 20px;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+    }
+
+    label {
+        display: block;
+        margin-top: 15px;
+        font-weight: bold;
+    }
+
+    input,
+    select,
+    textarea {
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        border-radius: 4px;
+        border: 1px solid #ccc;
+    }
+
+    button {
+        margin-top: 20px;
+        padding: 10px 20px;
+        background-color: #007bff;
+        border: none;
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 4px;
+    }
+
+    button:hover {
+        background-color: #0056b3;
+    }
+
+    .errorlist {
+        color: red;
+        list-style-type: none;
+        padding-left: 0;
+    }
+    a{
+        text-decoration: none;
+        color:white
+    }
+
+    #backtolist {
+        margin:20px  20px;
+        padding: 10px 20px;
+        background-color: #ebb12a;
+        border: none;
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 4px;
+
+    }
+    #backtolist:hover{
+         background-color: #857144;
+    }
+
+</style>
+
+<body>
+    <!-- books/templates/books/book_form.html -->
+   <h2>{% if form.instance.pk %}Edit Book{% else %}Create Book{% endif %}</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Save</button><span><button id="backtolist"><a href="{% url 'books:book_list' %}">Back to
+                    list</a></button></span>
+    </form>
+
+
+
+
+</body>
+
+</html>
