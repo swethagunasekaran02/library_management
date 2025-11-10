@@ -12,6 +12,11 @@ Author.objects.create(name="George R. R. Martin")
 Author.objects.create(name="Agatha Christie")
 
 
+#home
+def home(request):
+    return render(request,'books/index.html',{})
+
+
 
 # List all books
 def book_list(request):
