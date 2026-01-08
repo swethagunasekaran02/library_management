@@ -3,21 +3,23 @@ import os
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# Production secret key
 SECRET_KEY = os.environ.get('SECRET_KEY', 'unsafe-secret-key')
 
+# Turn off debug in production
 DEBUG = False
 
+# Hosts allowed to serve your app
 ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
     '.onrender.com',
-    '.vercel.app',
     '.railway.app',
 ]
 
+# CSRF trusted origins for cloud
 CSRF_TRUSTED_ORIGINS = [
     'https://*.onrender.com',
-    'https://*.vercel.app',
     'https://*.railway.app',
 ]
 
@@ -47,7 +49,7 @@ ROOT_URLCONF = 'myproject.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates'],
+        'DIRS': [BASE_DIR / 'templates'],  # Make sure templates folder exists
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -63,7 +65,7 @@ WSGI_APPLICATION = 'myproject.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
+        'ENGINE': 'django.db.backends.sqlite3',  # You can change to Postgres for production
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
@@ -73,8 +75,17 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
 
+# Static files
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATICFILES_DIRS = [BASE_DIR / 'static']
+STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Optional security settings
+SECURE_BROWSER_XSS_FILTER = True
+SECURE_CONTENT_TYPE_NOSNIFF = True
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+X_FRAME_OPTIONS = 'DENY'
