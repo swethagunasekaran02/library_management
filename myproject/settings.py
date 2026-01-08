@@ -7,15 +7,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY', 'unsafe-secret-key')
 
 # Turn off debug in production
-DEBUG = False
+DEBUG = True
 
 # Hosts allowed to serve your app
-ALLOWED_HOSTS = [
-    'localhost',
-    '127.0.0.1',
-    '.onrender.com',
-    '.railway.app',
-]
+ALLOWED_HOSTS = ["localhost", "127.0.0.1", ".vercel.app"]
 
 # CSRF trusted origins for cloud
 CSRF_TRUSTED_ORIGINS = [
