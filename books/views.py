@@ -36,7 +36,7 @@ def book_create(request):
         form = BookForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('books:book_list')
+            return redirect('books:books_list')
     else:
         form = BookForm()
     return render(request, 'books/books_form.html', {'form': form, 'title': 'Add New Book'})
