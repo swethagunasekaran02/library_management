@@ -3,18 +3,19 @@ import os
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# Production secret key
+# Secret key (use environment variable in production)
 SECRET_KEY = os.environ.get('SECRET_KEY', 'unsafe-secret-key')
 
-# Turn off debug in production
-DEBUG = True
+# Debug off for production
+DEBUG = False
 
 # Hosts allowed to serve your app
-ALLOWED_HOSTS = ["localhost", "127.0.0.1", ".vercel.app"]
+ALLOWED_HOSTS = ["localhost", "127.0.0.1", ".vercel.app", ".render.com", ".railway.app"]
 
-# CSRF trusted origins for cloud
+# CSRF trusted origins
 CSRF_TRUSTED_ORIGINS = [
-    'https://*.onrender.com',
+    'https://*.vercel.app',
+    'https://*.render.com',
     'https://*.railway.app',
 ]
 
@@ -44,7 +45,7 @@ ROOT_URLCONF = 'myproject.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates'],  # Make sure templates folder exists
+        'DIRS': [BASE_DIR / 'templates'],  # Ensure templates folder exists
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -58,9 +59,10 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'myproject.wsgi.application'
 
+# Use SQLite locally; switch to Postgres in production if needed
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',  # You can change to Postgres for production
+        'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
@@ -78,7 +80,7 @@ STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# Optional security settings
+# Security settings
 SECURE_BROWSER_XSS_FILTER = True
 SECURE_CONTENT_TYPE_NOSNIFF = True
 SESSION_COOKIE_SECURE = True
