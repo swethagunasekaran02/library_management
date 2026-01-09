@@ -3,15 +3,12 @@ import os
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = os.environ.get('SECRET_KEY', 'dev-secret-key')
-
-DEBUG = True  # production-la False podalam
-
-ALLOWED_HOSTS = ["*", ".render.com", ".railway.app"]
+DEBUG = False
+SECRET_KEY = os.environ.get('SECRET_KEY') 
+ALLOWED_HOSTS = ["myapp.onrender.com"]
 
 CSRF_TRUSTED_ORIGINS = [
-    "https://*.render.com",
-    "https://*.railway.app",
+    "https://myapp.onrender.com",
 ]
 
 INSTALLED_APPS = [
